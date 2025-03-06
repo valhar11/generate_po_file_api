@@ -2,7 +2,7 @@
 
 This script updates a POT file with translations drawn from multiple sources. It uses translations from:
 1. A reference PO file (if provided) – exact match (case-sensitive) on `msgid`.
-2. A CSV file – the CSV is read with a comma (`,`) separator and searched case-insensitively.
+2. A CSV file – the CSV is read with a ";" separator and searched case-insensitively.
 3. The DeepL API – used if no translation is found via the above sources (if enabled).
 
 A final report is printed with counts for:
@@ -16,7 +16,7 @@ A final report is printed with counts for:
 
 - Python 3.x  
 - The Python packages: `polib`, `deepl`  
-  Install via pip if necessary:
+  Install via pip if necessary:  
 pip install polib deepl
 
 ## Usage
@@ -28,7 +28,7 @@ python translate_po.py <pot_file> <csv_file> [options]
 ### Positional Arguments
 - `pot_file`: Path to the POT file to process.
 - `csv_file`: Path to the CSV file containing translations.  
-  **Note:** The CSV must use the comma (`,`) delimiter.
+  **Note:** The CSV must use the `;` delimiter.
 
 ### Optional Arguments
 - `--target-lang`: Target language code for DeepL translations (default: `FR`).
@@ -46,5 +46,14 @@ python translate_po.py path/to/file.pot path/to/translations.csv --reference-po 
 
 At the end of execution, you will see a summary like this:
 
+[INFO] PO file generated: ../Downloads/new/aca_project/i18n/aca_project.po
+
+[REPORT]  
+Translated from reference file: 14  
+Translated from CSV: 36  
+Translated via DeepL: 92  
+Untranslated: 2  
+Already Translated (initially present in the POT): 0  
+Added to CSV: 10  
 
 This report helps you understand how many entries were processed and their sources of translation.
